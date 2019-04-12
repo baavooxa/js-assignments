@@ -11,7 +11,7 @@
 
 
 /**
- * Returns an area of a rectangle given by width and heigth.
+ * Returns an area of a rectangle given by width and heigth. +
  *
  * @param {numder} width
  * @param {number} height
@@ -22,12 +22,12 @@
  *   5, 5  => 25
  */
 function getRectangleArea(width, height) {
-    throw new Error('Not implemented');
+    return width * height;
 }
 
 
 /**
- * Returns a circumference of circle given by radius.
+ * Returns a circumference of circle given by radius. +
  *
  * @param {number} radius
  * @return {number}
@@ -38,7 +38,7 @@ function getRectangleArea(width, height) {
  *   0    => 0
  */
 function getCicleCircumference(radius) {
-    throw new Error('Not implemented');
+    return 2 * Math.PI * radius;
 }
 
 /**
@@ -54,7 +54,8 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-    throw new Error('Not implemented');
+    let avg = (value1 + value2) / 2;
+    return avg;
 }
 
 /**
