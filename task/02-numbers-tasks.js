@@ -222,7 +222,7 @@ function isPrime(n) {
 }
 
 /**
- * Tries to convert value to number and returns it if conversion was successfull;
+ * Tries to convert value to number and returns it if conversion was successfull; +
  * otherwise returns default value passed as a second argument.
  *
  * @param {any} value
@@ -237,7 +237,11 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented');
+    if (('' + value) === (+value).toString()) {
+        return +value;
+    } else {
+        return def;
+    }
 }
 
 module.exports = {
