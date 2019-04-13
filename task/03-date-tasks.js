@@ -10,7 +10,7 @@
 
 
 /**
- * Parses a rfc2822 string date representation into date value
+ * Parses a rfc2822 string date representation into date value +
  * For rfc2822 date specification refer to : http://tools.ietf.org/html/rfc2822#page-14
  *
  * @param {string} value
@@ -22,11 +22,11 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   throw new Error('Not implemented');
+   return new Date();
 }
 
 /**
- * Parses an ISO 8601 string date representation into date value
+ * Parses an ISO 8601 string date representation into date value +
  * For ISO 8601 date specification refer to : https://en.wikipedia.org/wiki/ISO_8601
  *
  * @param {string} value
@@ -37,12 +37,12 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   throw new Error('Not implemented');
+   return new Date(value);
 }
 
 
 /**
- * Returns true if specified date is leap year and false otherwise
+ * Returns true if specified date is leap year and false otherwise +
  * Please find algorithm here: https://en.wikipedia.org/wiki/Leap_year#Algorithm
  *
  * @param {date} date
@@ -56,12 +56,12 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-   throw new Error('Not implemented');
+   return ((date.getFullYear() % 4 == 0) && (date.getFullYear() % 100 != 0)) || (date.getFullYear() % 400 == 0);
 }
 
 
 /**
- * Returns the string represention of the timespan between two dates.
+ * Returns the string represention of the timespan between two dates. +-
  * The format of output string is "HH:mm:ss.sss"
  *
  * @param {date} startDate
@@ -76,7 +76,20 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   throw new Error('Not implemented');
+   let startMs = Date.parse(startDate);
+   let endMs = Date.parse(endDate);
+   let diffMs = endMs - startMs;
+   
+   let milliseconds = parseInt((diffMs % 1000) / 100),
+      seconds = parseInt((diffMs / 1000) % 60),
+      minutes = parseInt((diffMs / (1000 * 60)) % 60),
+      hours = parseInt((diffMs / (1000 * 60 * 60)) % 24);
+
+   hours = (hours < 10) ? "0" + hours : hours;
+   minutes = (minutes < 10) ? "0" + minutes : minutes;
+   seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+   return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
 }
 
 
@@ -94,14 +107,14 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-    throw new Error('Not implemented');
+   throw new Error('Not implemented');
 }
 
 
 module.exports = {
-    parseDataFromRfc2822: parseDataFromRfc2822,
-    parseDataFromIso8601: parseDataFromIso8601,
-    isLeapYear: isLeapYear,
-    timeSpanToString: timeSpanToString,
-    angleBetweenClockHands: angleBetweenClockHands
+   arseDataFromRfc2822: parseDataFromRfc2822,
+   parseDataFromIso8601: parseDataFromIso8601,
+   isLeapYear: isLeapYear,
+   timeSpanToString: timeSpanToString,
+   angleBetweenClockHands: angleBetweenClockHands
 };
