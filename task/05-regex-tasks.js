@@ -9,7 +9,7 @@
 
 
 /**
- * Returns the regexp that matches a GUID string representation
+ * Returns the regexp that matches a GUID string representation +
  * '{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}',
  * where X is hexadecimal digit (0,1,2...,9,A,a,B,b,C,c,D,d,F,f)
  *
@@ -31,12 +31,12 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-   throw new Error('Not implemented');
+   return /{[0-9a-fA-F\-]{36}}/;
 }
 
 
 /**
- * Returns the regexp that matches all the strings from first column
+ * Returns the regexp that matches all the strings from first column +
  * but of them from the second
  *
  * Match :                 Do not match:
@@ -53,7 +53,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+   return new RegExp (/p[^\b]t/);
 }
 
 
