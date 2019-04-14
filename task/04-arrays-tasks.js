@@ -188,7 +188,7 @@ function getTail(arr, n) {
 
 
 /**
- * Returns CSV represebtation of two-dimentional numeric array.
+ * Returns CSV represebtation of two-dimentional numeric array. +
  * https://en.wikipedia.org/wiki/Comma-separated_values
  * 
  * @param {array} arr
@@ -208,7 +208,10 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   throw new Error('Not implemented');
+   let res = arr.map((item) => {
+      return item.join(',') + '\n';
+   }).join('');
+   return res.slice(0, res.length - 1);
 }
 
 /**
@@ -319,7 +322,7 @@ function getPositivesCount(arr) {
 }
  
 /** 
- * Sorts digit names
+ * Sorts digit names +
  * 
  * @param {array} arr
  * @return {array}
@@ -332,7 +335,8 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   throw new Error('Not implemented');
+   const numArr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+   return arr.sort((a, b) => numArr.indexOf(a) - numArr.indexOf(b));
 }
 
 /** 
@@ -408,7 +412,7 @@ function toStringList(arr) {
 
 
 /**
- * Sorts the specified array by country name first and city name (if countries are equal) in ascending order.
+ * Sorts the specified array by country name first and city name (if countries are equal) in ascending order. +
  * 
  * @param {array} arr
  * @return {array}
@@ -432,7 +436,21 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-   throw new Error('Not implemented');
+   return arr.sort((a, b) => {
+      if(a.country > b.country) {
+         return 1;
+      }
+      if(a.country < b.country) {
+         return -1;
+      }
+      if(a.country === b.country) {
+         if(a.city > b.city) {
+            return 1;
+         } else {
+            return -1;
+         }
+      }
+   });
 }
 
 /**
@@ -531,7 +549,7 @@ function group(array, keySelector, valueSelector) {
 
 
 /**
- * Projects each element of the specified array to a sequence and flattens the resulting sequences into one array.
+ * Projects each element of the specified array to a sequence and flattens the resulting sequences into one array. +
  *
  * @param {array} arr
  * @param {Function} childrenSelector, a transform function to apply to each element that returns an array of children
@@ -542,12 +560,12 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
+   return arr.map(childrenSelector).reduce((acc, item) => acc.concat(item));
 }
 
 
 /**
- * Returns an element from the multidimentional array by the specified indexes.
+ * Returns an element from the multidimentional array by the specified indexes. +
  *
  * @param {array} arr
  * @param {array} indexes
@@ -559,12 +577,12 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+   return indexes.reduce((arr, index) => arr[index], arr);
 }
 
 
 /**
- * Swaps the head and tail of the specified array:
+ * Swaps the head and tail of the specified array: +
  * the head (first half) of array move to the end, the tail (last half) move to the start. 
  * The middle element (if exists) leave on the same position.
  * 
@@ -582,7 +600,11 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+   const arrHalf = arr.slice(Math.round(arr.length/2), arr.length);
+   if(arr.length % 2 === 1) {
+      arrHalf.push(arr[Math.floor(arr.length/2)]);
+   }
+   return arrHalf.concat(arr.slice(0, arr.length/2));
 }
 
 
