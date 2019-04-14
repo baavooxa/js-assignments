@@ -10,7 +10,7 @@
 
 
 /**
- * Parses a rfc2822 string date representation into date value +
+ * Parses a rfc2822 string date representation into date value
  * For rfc2822 date specification refer to : http://tools.ietf.org/html/rfc2822#page-14
  *
  * @param {string} value
@@ -22,7 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   return new Date();
+   return new Date(value);
 }
 
 /**
@@ -37,7 +37,7 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   return new Date(value);
+   return Date.parse(value);
 }
 
 
@@ -76,20 +76,7 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   let startMs = Date.parse(startDate);
-   let endMs = Date.parse(endDate);
-   let diffMs = endMs - startMs;
-   
-   let milliseconds = parseInt((diffMs % 1000) / 100),
-      seconds = parseInt((diffMs / 1000) % 60),
-      minutes = parseInt((diffMs / (1000 * 60)) % 60),
-      hours = parseInt((diffMs / (1000 * 60 * 60)) % 24);
-
-   hours = (hours < 10) ? "0" + hours : hours;
-   minutes = (minutes < 10) ? "0" + minutes : minutes;
-   seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-   return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+   return (new Date(endDate - startDate)).toISOString().slice(11, -1);
 }
 
 
