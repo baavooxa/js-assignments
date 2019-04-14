@@ -10,7 +10,7 @@
 
 
 /**
- * Returns the 'Fizz','Buzz' or an original number using the following rules:
+ * Returns the 'Fizz','Buzz' or an original number using the following rules: +
  * 1) return original number
  * 2) but if number multiples of three return 'Fizz'
  * 3) for the multiples of five return 'Buzz'
@@ -30,12 +30,20 @@
  *
  */
 function getFizzBuzz(num) {
-    throw new Error('Not implemented');
+    if (num % 3 === 0  && num % 5 !== 0) {
+        return 'Fizz';
+    } else if (num % 5 === 0 && num % 3 !== 0) {
+        return 'Buzz';
+    } else if (num % 5 === 0 && num % 3 === 0) {
+        return 'FizzBuzz';
+    } else {
+        return num;
+    }
 }
 
 
 /**
- * Returns the factorial of the specified integer n.
+ * Returns the factorial of the specified integer n. +
  *
  * @param {number} n
  * @return {number}
@@ -46,12 +54,12 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    throw new Error('Not implemented');
+    return n ? n * getFactorial(n - 1) : 1;
 }
 
 
 /**
- * Returns the sum of integer numbers between n1 and n2 (inclusive).
+ * Returns the sum of integer numbers between n1 and n2 (inclusive). +
  *
  * @param {number} n1
  * @param {number} n2
@@ -63,12 +71,17 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-    throw new Error('Not implemented');
+    let count = 0;
+    while (n1 <= n2) {
+        count += n1;
+        n1++;
+    }
+    return count;
 }
 
 
 /**
- * Returns true, if a triangle can be built with the specified sides a,b,c and false in any other ways.
+ * Returns true, if a triangle can be built with the specified sides a,b,c and false in any other ways. +
  *
  * @param {number} a
  * @param {number} b
@@ -82,7 +95,11 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a,b,c) {
-    throw new Error('Not implemented');
+    if ((a < b+c) && (b < a+c) && (c < a+b)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
@@ -197,7 +214,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
 
 
 /**
- * Reverse the specified string (put all chars in reverse order)
+ * Reverse the specified string (put all chars in reverse order) +
  *
  * @param {string} str
  * @return {string}
@@ -209,12 +226,12 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    return str.split('').reverse().join('');
 }
 
 
 /**
- * Reverse the specified integer number (put all digits in reverse order)
+ * Reverse the specified integer number (put all digits in reverse order) +
  *
  * @param {number} num
  * @return {number}
@@ -226,7 +243,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    return num.toString().split('').reverse().join('');
 }
 
 
@@ -256,7 +273,7 @@ function isCreditCardNumber(ccn) {
 
 
 /**
- * Returns the digital root of integer:
+ * Returns the digital root of integer: +
  *   step1 : find sum of all digits
  *   step2 : if sum > 9 then goto step1 otherwise return the sum
  *
@@ -270,7 +287,15 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    let strNum = num.toString();
+    let strLen = strNum.length;
+    let sum = 0;
+
+    for (let i = 0; i < strLen; i++) {
+        sum += parseInt(strNum[i]);
+    }
+
+    return sum < 10 ? sum : getDigitalRoot(sum); 
 }
 
 
@@ -337,7 +362,7 @@ function timespanToHumanString(startDate, endDate) {
 
 
 /**
- * Returns the string with n-ary (binary, ternary, etc, where n<=10) representation of specified number.
+ * Returns the string with n-ary (binary, ternary, etc, where n<=10) representation of specified number. +
  * See more about
  * https://en.wikipedia.org/wiki/Binary_number
  * https://en.wikipedia.org/wiki/Ternary_numeral_system
@@ -356,7 +381,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return +(num).toString(n);
 }
 
 
@@ -378,7 +403,7 @@ function getCommonDirectoryPath(pathes) {
 
 
 /**
- * Returns the product of two specified matrixes.
+ * Returns the product of two specified matrixes. +
  * See details: https://en.wikipedia.org/wiki/Matrix_multiplication
  *
  * @param {array} m1
@@ -396,7 +421,18 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-    throw new Error('Not implemented');
+    var result = [];
+    for (var i = 0; i < m1.length; i++) {
+        result[i] = [];
+        for (var j = 0; j < m2[0].length; j++) {
+            var sum = 0;
+            for (var k = 0; k < m1[0].length; k++) {
+                sum += m1[i][k] * m2[k][j];
+            }
+            result[i][j] = sum;
+        }
+    }
+    return result;
 }
 
 
