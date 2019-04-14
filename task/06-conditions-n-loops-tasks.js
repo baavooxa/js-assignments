@@ -188,7 +188,7 @@ function findFirstSingleChar(str) {
 
 
 /**
- * Returns the string representation of math interval, specified by two points and include / exclude flags.
+ * Returns the string representation of math interval, specified by two points and include / exclude flags. +
  * See the details: https://en.wikipedia.org/wiki/Interval_(mathematics)
  *
  * Please take attention, that the smaller number should be the first in the notation
@@ -209,7 +209,13 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    let res = isStartIncluded ? '[' : '(';
+    if(a < b) {
+        res += `${a}, ${b}`;
+    } else {
+        res += `${b}, ${a}`;
+    }
+    return isEndIncluded ? res + ']' : res + ')';
 }
 
 
